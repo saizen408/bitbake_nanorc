@@ -1,0 +1,23 @@
+filetype: bitbake
+
+detect: 
+    filename: "(local\\.conf|layer\\.conf|\\.inc|\\.bb(append|class)?)$"
+
+rules:
+    - cyan: "_[a-z0-9_\\-]+[ \\:\\.\\+\\?]*\\="
+    - brightgreen: "^python\\s+[0-9A-Z_]+\\s*\\(\\)"
+    - brightblue: "^python"
+    - brightgreen: "^[0-9A-Z_]+\\s*\\(\\)"
+    - green: "\\<(inherit|include|require|deltask|export|addhandler|addtask)\\>"
+    - green: "(\\{|\\}|\\(|\\)|\\;|\\]|\\[|`|\\\\|\\$|<|>|!|&|\\?=|\\?\\?=|:=|\\+=|=\\+|\\.=|=\\.|=|\\|)"
+    - brightyellow: "\"(\\\\.|[^\"])*\""
+    - brightyellow: "'(\\\\.|[^'])*'"
+    - brightyellow:
+        start: "\"(\\\\.|[^\"])*\\\\[[:space:]]*$"
+        end: "^(\\\\.|[^\"])*\""
+        rules: []
+
+    - brightred: "\\$\\{?[0-9A-Z_!@#$*?-]+\\}?"
+    - blue: "\\$\\{@.+\\}"
+    - cyan: "(^|[[:space:]])#.*$"
+    - green: "[[:space:]]+$"
